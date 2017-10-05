@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Log</title>
+</head>
+<body>
+    {% extends 'DJ/base.html' %}
+    {% load bootstrap3 %}
+
+    {% block header %}
+        <h2>Registration:</h2>
+    {% endblock header %}
+
+    {% block content %}
+        <form method="post" action="{% url 'users:register' %}" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">Register</button>
+            {% endbuttons %}
+
+            <input type="hidden" name="text" value="{% url 'DJ:index' %}"/>
+        </form>
+    {% endblock content %}
+</body>
+</html>

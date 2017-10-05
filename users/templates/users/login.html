@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Log</title>
+</head>
+<body>
+    {% extends 'DJ/base.html' %}
+    {% load bootstrap3 %}
+
+    {% block header %}
+        <h2>Log in to your account</h2>
+    {% endblock header %}
+
+    {% block content %}
+        {% if form.errors %}
+            <p>Your username or password didn't match. Please try again</p>
+        {% endif %}
+
+        <p>Authorization:</p>
+        <form action="{% url 'users:login' %}" method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">Log in</button>
+            {% endbuttons %}
+
+            <input type="hidden" name="next" value="{% url 'DJ:index' %}"/>
+        </form>
+    {% endblock content %}
+</body>
+</html>

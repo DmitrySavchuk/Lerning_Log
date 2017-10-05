@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Log</title>
+</head>
+<body>
+    {% extends 'DJ/base.html' %}
+
+    {% block header %}
+        <h1>
+            Topics:
+        </h1>
+    {% endblock header %}
+
+    {% block content %}
+        <ul>
+        {% for topic in topics %}
+            <li>
+                <h3><a href="{% url 'DJ:topic' topic.id %}">{{ topic }}</a></h3>
+            </li>
+            {% empty %}
+            <li>No topics have been added yet</li>
+        {% endfor %}
+        </ul>
+            <h4><a href="{% url 'DJ:new_topic'%}">Add new topic</a></h4>
+    {% endblock content %}
+</body>
+</html>
